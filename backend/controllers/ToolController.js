@@ -2,7 +2,7 @@ const Tool = require("../models/Tool")
 
 const getAllTools = async (req, res) => {
     const tools = await Tool.find().lean()
-    if (!tools) {
+    if (!tools) {        
         return res.status(400).json({
             error: true,
             message: "לא נמצאו כלים",
@@ -62,15 +62,15 @@ const createTool = async (req, res) => {
     })
 }
 const updateTool = async (req, res) => {
-    const { id, name, description, price, imageUrl } = req.body
-    if (!id) {
+    const { _id, name, description, price, imageUrl } = req.body    
+    if (!_id) {
         return res.status(400).json({
             error: true,
             message: "מספר מזהה זה שדה חובה",
             data: null
         })
     }
-    const tool = await Tool.findById(id).exec()
+    const tool = await Tool.findById(_id).exec()
     if (!tool) {
         return res.status(400).json({
             error: true,
@@ -91,15 +91,15 @@ const updateTool = async (req, res) => {
 
 }
 const deleteTool = async (req, res) => {
-    const { id } = req.body
-    if (!id) {
-        return res.status(400).res.json({
+    const { _id } = req.body
+    if (!_id) {
+        return res.status(400).json({
             error: true,
             message: "מספר מזהה זה שדה חובה",
             data: null
         })
     }
-    const tool = await Tool.findById(id).exec()
+    const tool = await Tool.findById(_id).exec()
     if (!tool) {
         return res.status(400).json({
             error: true,
