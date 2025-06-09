@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 1000
 
 app.use(cors(corsOptions))
 app.use(express.json())
+const cookieParser = require("cookie-parser")
+app.use(cookieParser())
 // app.use(express.static("public"))
 
 connectDB()
