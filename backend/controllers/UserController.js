@@ -35,14 +35,14 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
     const { name, username, password, email, role } = req.body
     if (!name || !username || !password || !email || !role) {
-        return react.status(400).json({
+        return res.status(400).json({
             error: true,
             message: "יש למלא את כל הפרטים",
             data: null
         })
     }
     const hashPassword = await bcrypt.hash(password, 10)
-    duplicate = await User.findOne({ username }).lean()
+    const duplicate = await User.findOne({ username }).lean()
     if (duplicate) {
         return res.status(409).json({
             error: true,
@@ -60,7 +60,7 @@ const createUser = async (req, res) => {
     }
     res.json({
         error: false,
-        messaga: "",
+        message: "",
         data: user
     })
 }
