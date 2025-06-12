@@ -15,7 +15,9 @@ app.use(cookieParser())
 
 connectDB()
 
-app.use("/tools/", require("./routes/ToolRoute"))
+app.use("/api/tool/", require("./routes/ToolRoute"))
+app.use("/api/user/", require("./routes/UserRoute"))
+app.use("/api/auth/", require("./routes/AuthRoute"))
 
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`);
