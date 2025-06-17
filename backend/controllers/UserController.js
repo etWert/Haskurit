@@ -100,10 +100,16 @@ const updateUser = async (req, res) => {
     user.email = email ? email : user.email
 
     const updatedUser = await user.save()
-    res.send({
+    res.json({
         error: false,
         message: "משתמש עודכן בהצלחה",
-        data: updateUser
+        data: {
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            username: updatedUser.username,
+            email: updatedUser.email,
+            role: updatedUser.role
+        }
     })
 }
 const deleteUser = async (req, res) => {
@@ -117,7 +123,7 @@ const deleteUser = async (req, res) => {
     }
     const user = await User.findById(_id).exec()
     if (!user) {
-        return res.json({
+        return res.status(400).json({
             error: true,
             message: "לא ניתן למחוק את המשתמש כי לא נמצא",
             data: null
