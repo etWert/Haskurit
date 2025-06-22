@@ -17,29 +17,36 @@ export const toolsApiSlice = apiSlice.injectEndpoints({
 
         // הוספת כלי חדש (מנהל בלבד)
         addTool: builder.mutation({
-            query: (newTool) => ({
+            query: (formData) => ({
                 url: '/tool',
                 method: 'POST',
-                body: newTool
+                body: formData,
+                // לא להוסיף Content-Type header כשמשתמשים ב-FormData
+                // הדפדפן יוסיף אותו אוטומטית עם boundary
+                formData: true
             }),
             invalidatesTags: ['Tool']
         }),
 
         // עדכון כלי (מנהל בלבד)
         updateTool: builder.mutation({
-            query: (updatedTool) => ({
+            query: (formData) => ({
                 url: '/tool',
                 method: 'PUT',
-                body: updatedTool
+                body: formData,
+                formData: true
             }),
             invalidatesTags: (result, error, arg) => [{ type: 'Tool', id: arg.id }]
+            // invalidatesTags: (result, error, arg) => [{ type: 'Tool', id: arg.get('_id') }]
+
         }),
 
         // מחיקת כלי (מנהל בלבד)
         deleteTool: builder.mutation({
             query: (id) => ({
-                url: `/tool/${id}`,
-                method: 'DELETE'
+                url: `/tool`,
+                method: 'DELETE',
+                body: { _id: id }
             }),
             invalidatesTags: ['Tool']
         })
