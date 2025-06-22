@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { setCredentials, logOut } from '../features/auth/authSlice'
+import { setToken, logout } from '../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_API_URL + '/api',
@@ -26,11 +26,11 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     if (refreshResult?.data) {
       const user = api.getState().auth.user
       // שמור את הטוכן החדש
-      api.dispatch(setCredentials({ ...refreshResult.data, user }))
+      api.dispatch(setToken({ ...refreshResult.data, user }))
       // נסה שוב את הבקשה המקורית
       result = await baseQuery(args, api, extraOptions)
     } else {
-      api.dispatch(logOut())
+      api.dispatch(logout())
     }
   }
 
