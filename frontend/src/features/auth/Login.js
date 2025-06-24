@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from './authApiSlice';
 import useAuth from '../../hooks/useAuth';
@@ -6,12 +6,10 @@ import useAuth from '../../hooks/useAuth';
 const Login = () => {
     const navigate = useNavigate()
     const { role } = useAuth();
-    const [login, { isError, error, isLoading, isSuccess, data }] = useLoginMutation()
+    const [login, { error, isLoading, isSuccess }] = useLoginMutation()
 
     useEffect(() => {
         if (isSuccess) {
-            console.log(data);
-
             if (role === 'admin') {
                 console.log(1);
                 navigate('/admin');
@@ -20,7 +18,7 @@ const Login = () => {
                 navigate('/profile'); // כרגע עדיין לא קיים
             }
         }
-    }, [isSuccess])
+    }, [isSuccess,navigate,role])
 
     const handleSubmit = async (e) => {
         e.preventDefault();

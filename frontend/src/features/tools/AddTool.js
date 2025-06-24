@@ -2,7 +2,7 @@ import { useAddToolMutation } from './toolsApiSlice'
 import { useEffect, useState } from "react"
 
 const AddTool = () => {
-    const [addTool, { data, isError, error, isSuccess, isLoading }] = useAddToolMutation()
+    const [addTool, { isError, error, isSuccess, isLoading }] = useAddToolMutation()
     const [selectedImage, setSelectedImage] = useState(null)
     const [imagePreview, setImagePreview] = useState('')
 

@@ -3,9 +3,9 @@ import { useDeleteToolMutation, useUpdateToolMutation } from './toolsApiSlice';
 import { MdDelete, MdEdit } from "react-icons/md";
 import { RiSave3Line } from "react-icons/ri";
 
-const AdminToolCard = ({ tool, onSuccess }) => {
+const AdminToolCard = ({ tool }) => {
   const [deleteTool] = useDeleteToolMutation();
-  const [updateTool, { isLoading: isUpdating }] = useUpdateToolMutation();
+  const [updateTool] = useUpdateToolMutation();
 
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
