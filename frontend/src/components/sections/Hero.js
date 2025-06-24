@@ -1,10 +1,9 @@
-const Hero = ({ onLogoClick }) => {
+const Hero = () => {
   return (
     <section className="bg-gradient-to-b from-haskurit-white to-haskurit-white min-h-screen flex items-center justify-center">
       <div className="text-center px-4 max-w-4xl mx-auto">
         <h1
           className="text-6xl md:text-8xl font-bold text-haskurit-yellow mb-8 hover:scale-105 transition-transform duration-200"
-          onClick={onLogoClick}
           title="השכרת כלי עבודה מקצועיים"
         >
           השכורית

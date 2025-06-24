@@ -22,23 +22,11 @@ const HomePage = () => {
         return () => window.removeEventListener('keydown', handleKeyPress)
     }, [navigate])
 
-    // לחיצות על הלוגו (5 לחיצות מהירות)
-    const handleLogoClick = () => {
-        setClickCount(prev => prev + 1)
 
-        if (clickCount === 4) { // לחיצה חמישית
-            console.log('🎯 Logo clicks activated')
-            navigate('/dashboard-access')
-            setClickCount(0)
-        }
-
-        // איפוס אחרי 2 שניות
-        setTimeout(() => setClickCount(0), 2000)
-    }
 
     return (
         <div className="min-h-screen bg-haskurit-white">
-            <Hero onLogoClick={handleLogoClick} />
+            <Hero />
             <Tools />
             {/* <About /> */}
             <Contact />
