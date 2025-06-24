@@ -2,6 +2,7 @@ const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:5500',
     'http://localhost:1111',
+    'https://haskurit.netlify.app'
 ]
 
 const corsOptions = {
