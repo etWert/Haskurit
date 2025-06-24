@@ -2,7 +2,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 
 const ContactInfo = () => {
     return (
-        <section className="w-full mx-auto bg-haskurit-gray p-6 rounded shadow-md text-haskurit-white">
+        <section id="contact" className="w-full mx-auto bg-haskurit-gray p-6 rounded shadow-md text-haskurit-white">
             <h2 className="text-2xl font-bold mb-4">השכורית</h2>
             <p className="mb-2">
                 <strong>טלפון:</strong>{' '}
