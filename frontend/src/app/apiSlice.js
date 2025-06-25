@@ -42,4 +42,5 @@ const apiSlice = createApi({
   tagTypes: ['Tool', 'User'],
   endpoints: builder => ({})
 })
+
 export default apiSlice
