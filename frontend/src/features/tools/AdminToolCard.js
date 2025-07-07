@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDeleteToolMutation, useUpdateToolMutation } from './toolsApiSlice';
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdCancel, MdDelete, MdEdit } from "react-icons/md";
 import { RiSave3Line } from "react-icons/ri";
 
 const AdminToolCard = ({ tool }) => {
@@ -119,13 +119,13 @@ const AdminToolCard = ({ tool }) => {
         <div className="flex justify-end gap-3 mt-4">
           {isEditing ? (
             <>
-              <button onClick={handleUpdate} className="text-green-600 text-sm hover:underline">שמור<RiSave3Line /></button>
-              <button onClick={handleCancel} className="text-gray-600 text-sm hover:underline">❌ ביטול</button>
+              <button onClick={handleUpdate} className="bg-haskurit-yellow text-haskurit-gray font-semibold p-4 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"><RiSave3Line /></button>
+              <button onClick={handleCancel} className="bg-haskurit-yellow text-haskurit-gray font-semibold p-4 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"><MdCancel /></button>
             </>
           ) : (
             <>
-              <button className="text-blue-600 text-sm hover:underline" onClick={() => setIsEditing(true)}><MdEdit /></button>
-              <button className="text-red-600 text-sm hover:underline" onClick={handleDelete}><MdDelete size={20} /></button>
+              <button className="bg-haskurit-yellow text-haskurit-gray font-semibold p-4 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed" onClick={() => setIsEditing(true)}><MdEdit /></button>
+              <button className="bg-haskurit-yellow text-haskurit-gray font-semibold p-4 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed" onClick={handleDelete}><MdDelete size={20} /></button>
             </>
           )}
         </div>

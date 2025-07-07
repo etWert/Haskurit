@@ -1,5 +1,7 @@
 import { useAddToolMutation } from './toolsApiSlice'
 import { useEffect, useState } from "react"
+import { IoIosAddCircle } from "react-icons/io";
+import { BsHourglassSplit } from "react-icons/bs";
 
 const AddTool = () => {
     const [addTool, { isError, error, isSuccess, isLoading }] = useAddToolMutation()
@@ -44,9 +46,6 @@ const AddTool = () => {
 
     return (
         <div className="min-h-screen bg-haskurit-white px-6 py-10">
-            <h1 className="text-3xl font-bold text-center text-haskurit-gray mb-10">
-                הוספת כלי חדש
-            </h1>
             {isError && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 max-w-3xl mx-auto">
                     שגיאה: {error?.data?.message || 'שגיאה לא ידועה'}
@@ -60,8 +59,10 @@ const AddTool = () => {
             )}
 
             <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-xl p-6 max-w-3xl mx-auto mb-12">
+                <h1 className="text-3xl font-bold text-center text-haskurit-gray mb-10">
+                    הוספת כלי חדש
+                </h1>
                 <h2 className="text-xl font-semibold text-haskurit-gray mb-4">פרטי הכלי</h2>
-
                 <div className="grid gap-4 md:grid-cols-2">
                     <input
                         name="name"
@@ -117,10 +118,19 @@ const AddTool = () => {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="mt-4 bg-haskurit-yellow text-haskurit-gray font-semibold px-6 py-2 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="mt-4 bg-haskurit-yellow text-haskurit-gray font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    {isLoading ? '⏳ מוסיף...' : '➕ הוסף כלי'}
-                </button>
+                    {isLoading ?
+                        <span className="flex items-center gap-2">
+                            <BsHourglassSplit className="text-xl" />
+                            מוסיף...
+                        </span>
+                        :
+                        <span className="flex items-center gap-2">
+                            <IoIosAddCircle className="text-xl" />
+                            הוסף כלי
+                        </span>
+                    }                </button>
             </form>
         </div>
     )
