@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setToken, logout } from '../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://haskurit.onrender.com/api',
+  baseUrl: process.env.REACT_APP_API_URL + '/api' || process.env.REACT_APP_API_URL_LOCAL + '/api',
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token
