@@ -3,7 +3,8 @@ const allowedOrigins = [
     'http://localhost:5500',
     'http://localhost:1111',
     'https://haskurit.vercel.app',
-    'https://www.haskurit.co.il'
+    'https://www.haskurit.co.il',
+    'https://haskurit.co.il'
 ]
 
 const corsOptions = {
