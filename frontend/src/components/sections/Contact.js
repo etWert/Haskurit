@@ -1,65 +1,42 @@
-import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp, FaPhone } from 'react-icons/fa';
 
-const ContactInfo = () => {
+const Contact = () => {
     return (
-        <section id="contact" className="w-full mx-auto bg-haskurit-gray p-6 rounded shadow-md text-haskurit-white">
-            <h2 className="text-2xl font-bold mb-4">השכורית</h2>
-            <p className="mb-2">
-                <strong>טלפון:</strong>{' '}
-                <a href="tel:+972527694198" className="text-blue-600 hover:underline">
-                    +972-52-769-4198
-                </a>
-            </p>
-            <p className="mb-2">
-                <strong>אימייל:</strong>{' '}
-                <a href="mailto:mss8535645@gmail.com " className="text-blue-600 hover:underline">
-                    mss8535645@gmail.com
-                </a>
-            </p>
-            <p className="mb-2">
-                <strong>כתובת:</strong> רח' הדוגמא 12, בית שמש
-            </p>
-            <p className="mb-4">
-                <strong>שעות פעילות:</strong> א'-ה' 09:00-18:00, ו' 09:00-13:00
-            </p>
-
-            <div className="flex space-x-4 text-2xl text-blue-600">
-                <a
-                    href="https://facebook.com/hashkorit"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                >
-                    <FaFacebook />
-                </a>
-                <a
-                    href="https://instagram.com/hashkorit"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                >
-                    <FaInstagram />
-                </a>
-                <a
-                    href="https://linkedin.com/company/hashkorit"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                >
-                    <FaLinkedin />
-                </a>
-                <a
-                    href="https://wa.me/97212345678"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="WhatsApp"
-                    className="hover:text-green-600"
-                >
-                    <FaWhatsapp />
-                </a>
+        <section id="contact" className="bg-haskurit-gray text-haskurit-white py-6 px-4">
+            <div className="ms-auto me-0 pr-2">
+                <div className="text-right space-y-3">
+                    <h2 className="text-2xl font-bold">השכורית</h2>
+                    <p>
+                        <strong>כתובת:</strong> רמה ג' בית שמש
+                    </p>
+                    <p>
+                        <strong>שעות פעילות:</strong> א'-ה' 17:00–08:00
+                    </p>
+                    <p>
+                        <strong>טלפון:</strong> 052-7694198
+                    </p>
+                    <div className="flex justify-start gap-4 pt-2 text-3xl">
+                        <a
+                            href="tel:+972527694198"
+                            aria-label="התקשר עכשיו"
+                            className="hover:text-blue-400 transition"
+                        >
+                            <FaPhone />
+                        </a>
+                        <a
+                            href="https://wa.me/972527694198?text=שלום, אני מעוניין/ת בהשכרת כלי עבודה"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="שלח WhatsApp"
+                            className="hover:text-green-500 transition"
+                        >
+                            <FaWhatsapp />
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     );
 };
 
-export default ContactInfo;
+export default Contact;
