@@ -46,36 +46,38 @@ const refresh = async (req, res) => {
     if (!cookies?.jwt) {
         return res.status(401).json({
             error: true,
-            message: "משתמש לא רשום",
+            message: "משתמש לא מורשה",
             data: null
         });
     }
     const refreshToken = cookies.jwt
-    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, decode) => {
-        if (err) {
-            return res.status(403).json({
-                error: true,
-                message: "נכשל",
-                data: null
-            });
-        }
-        const foundUser = await User.findOne({ username: decode.username })
-        if (!foundUser) {
-            return res.status(401).json({
-                error: true,
-                message: "משתמש לא רשום",
-                data: null
-            });
-        }
-        const userInfo = {
-            _id: foundUser._id,
-            username: foundUser.username,
-            name: foundUser.name,
-            role: foundUser.role
-        }
-        const accessToken = jwt.sign(userInfo, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
-        res.json({ accessToken });
-    })
+    jwt.verify(refreshToken,
+        process.env.REFRESH_TOKEN_SECRET,
+        async (err, decode) => {
+            if (err) {
+                return res.status(403).json({
+                    error: true,
+                    message: "נכשל",
+                    data: null
+                });
+            }
+            const foundUser = await User.findOne({ username: decode.username })
+            if (!foundUser) {
+                return res.status(401).json({
+                    error: true,
+                    message: "משתמש לא רשום",
+                    data: null
+                });
+            }
+            const userInfo = {
+                _id: foundUser._id,
+                username: foundUser.username,
+                name: foundUser.name,
+                role: foundUser.role
+            }
+            const accessToken = jwt.sign(userInfo, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+            res.json({ accessToken });
+        })
 }
 const logout = async (req, res) => {
     const cookies = req.cookies;
