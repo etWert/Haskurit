@@ -5,13 +5,13 @@ const About = () => {
         id="about"
         style={{
           // backgroundImage: "url('/images/asfalt-dark.png')",
-          backgroundImage: "url('/images/concrete-wall.png')",
+          // backgroundImage: "url('/images/concrete-wall.png')",
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
           backgroundAttachment: "fixed",
         }}
 
-        className="min-h-screen flex items-center justify-center px-6 bg-haskurit-gray"
+        className="min-h-screen flex items-center justify-center px-6"
       >
         <section
           className="bg-white text-haskurit-gray p-6 rounded-xl max-w-3xl text-center shadow-xl"
