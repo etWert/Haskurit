@@ -2,7 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setToken, logout } from '../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.REACT_APP_API_URL + '/api' || process.env.REACT_APP_API_URL_LOCAL + '/api',
+  baseUrl: process.env.REACT_APP_API_URL
+    ? process.env.REACT_APP_API_URL + '/api'
+    : process.env.REACT_APP_API_URL_LOCAL
+      ? process.env.REACT_APP_API_URL_LOCAL + '/api'
+      : '',
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token
@@ -16,31 +20,31 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions)
 
-  // אם הטוכן פג, ננסה לרענן אותו
+  // אם הטוקן פג, ננסה לרענן אותו
   if (result?.error?.status === 401) {
-    console.log('שולח בקשת רענון טוכן')
-    
-    // נסה לרענן טוכן
+    console.log('שולח בקשת רענון טוקן')
+
+    // נסה לרענן טוקן
     const refreshResult = await baseQuery('/auth/refresh', api, extraOptions)
-    
+
     if (refreshResult?.data) {
-      const user = api.getState().auth.user
-      // שמור את הטוכן החדש
-      api.dispatch(setToken({ ...refreshResult.data, user }))
+      // שמור את הטוקן החדש
+      api.dispatch(setToken({ ...refreshResult.data/*, user*/ }))
       // נסה שוב את הבקשה המקורית
       result = await baseQuery(args, api, extraOptions)
     } else {
-      api.dispatch(logout())
+      if (refreshResult?.error?.status === 403) {
+        refreshResult.error.data.message = "Your login has expired."
+      }
+      return refreshResult
     }
   }
-
   return result
 }
 
 const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['Tool', 'User'],
-  endpoints: builder => ({})
+  endpoints: () => ({})
 })
 
 export default apiSlice

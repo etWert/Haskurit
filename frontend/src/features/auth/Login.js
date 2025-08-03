@@ -11,10 +11,8 @@ const Login = () => {
     useEffect(() => {
         if (isSuccess) {
             if (role === 'admin') {
-                console.log(1);
                 navigate('/admin');
             } else if (role === 'user') {
-                console.log(12)
                 navigate('/profile'); // כרגע עדיין לא קיים
             }
         }
@@ -22,7 +20,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const data = new FormData(e.target)
         const userObject = Object.fromEntries(data.entries())
         login(userObject)
