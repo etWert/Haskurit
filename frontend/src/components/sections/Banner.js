@@ -1,5 +1,4 @@
 import { HiOutlineArrowDown } from "react-icons/hi";
-import { IoArrowDownCircleOutline } from "react-icons/io5";
 
 const Banner = () => {
     return (
