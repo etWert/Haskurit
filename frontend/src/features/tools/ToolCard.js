@@ -1,4 +1,4 @@
-import React from 'react'
+import { FaPhone } from 'react-icons/fa'
 
 const ToolCard = ({ tool }) => {
     return (
@@ -18,18 +18,17 @@ const ToolCard = ({ tool }) => {
                     <p className="text-sm text-gray-600 line-clamp-3">{tool.description}</p>
                 </div>
 
-                {/* מחיר (תחתית, בצד שמאל) */}
-                <div className="flex justify-end items-center mt-2">
+                <div className="flex justify-between items-center mt-2">
                     <span className="text-lg font-semibold text-haskurit-yellow">
                         ₪{tool.price} ליום
                     </span>
-                    {/* כפתור עתידי להזמנה */}
-                    {/* <button
-                        disabled
-                        className="bg-haskurit-gray text-white px-4 py-1 rounded-lg text-sm cursor-not-allowed opacity-60 ml-auto"
+                    <a
+                        href="tel:+972527694198"
+                        aria-label="התקשר עכשיו"
+                        className="bg-haskurit-gray text-white p-3 rounded-lg"
                     >
-                        בהזמנה בהמשך
-                    </button> */}
+                        <FaPhone />
+                    </a>
                 </div>
             </div>
         </div>
