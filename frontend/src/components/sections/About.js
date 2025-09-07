@@ -67,7 +67,7 @@ const About = () => {
           <div className="bg-white rounded-xl shadow-md p-6 text-center">
             <FaClock className="mx-auto text-haskurit-yellow text-4xl mb-3" />
             <h3 className="text-lg font-semibold">שירות מהיר</h3>
-            <p className="text-sm mt-2">זמינות מיידית ומסירה מהירה לכל רחבי הארץ</p>
+            <p className="text-sm mt-2">זמינות מיידית ומסירה מהירה באזור בית שמש, ביתר והסביבה</p>
           </div>
 
           <div className="bg-white rounded-xl shadow-md p-6 text-center">
