@@ -19,7 +19,7 @@ const Contact = () => {
                         <a
                             href="tel:+972527694198"
                             aria-label="התקשר עכשיו"
-                            className="hover:text-blue-400 transition"
+                            className="text-blue-400 hover:text-blue-300 hover:scale-110 transition"
                         >
                             <FaPhone />
                         </a>
@@ -28,7 +28,7 @@ const Contact = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="שלח WhatsApp"
-                            className="hover:text-green-500 transition"
+                            className="text-green-500 hover:text-green-400 hover:scale-110 transition"
                         >
                             <FaWhatsapp />
                         </a>
