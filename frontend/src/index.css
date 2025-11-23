@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  direction: rtl;
-  text-align: right;
+@keyframes loaderBounce {
+  0% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
 }
