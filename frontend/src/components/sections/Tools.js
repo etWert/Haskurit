@@ -7,8 +7,13 @@ const Tools = () => {
     if (isLoading) {
         return (
             <section id="tools" className="py-12 bg-haskurit-white text-center">
-                <p className="text-haskurit-gray text-lg">טוען כלים...</p>
+                <div className="flex justify-center gap-3">
+                    <span className="w-3 h-3 rounded-full bg-haskurit-gray animate-[loaderBounce_0.6s_infinite_alternate]"></span>
+                    <span className="w-3 h-3 rounded-full bg-haskurit-gray animate-[loaderBounce_0.6s_infinite_alternate_0.2s]"></span>
+                    <span className="w-3 h-3 rounded-full bg-haskurit-gray animate-[loaderBounce_0.6s_infinite_alternate_0.4s]"></span>
+                </div>
             </section>
+
         )
     }
 
@@ -26,8 +31,8 @@ const Tools = () => {
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-haskurit-gray mb-12">
                     הכלים שלנו
                 </h2>
-
-                <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {/* מציג במובייל 2 בשורה */}
+                <div className="grid gap-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {tools.data.map(tool => (
                         <ToolCard key={tool._id} tool={tool} />
                     ))}
