@@ -62,12 +62,15 @@ const AdminToolCard = ({ tool }) => {
       _id: tool._id,
     });
   }
-
-
   return (
-    <div className="bg-white shadow-md rounded-xl overflow-hidden transition-transform transform hover:scale-105 duration-200">
-      <img src={imagePreview} alt={formData.name} className="w-full h-48 object-cover" />
-      <div className="p-4">
+    <div className="bg-white shadow-md rounded-xl overflow-hidden transition-transform transform hover:scale-105 duration-200 h-[500px] flex flex-col">
+      <img
+        src={imagePreview}
+        alt={formData.name}
+        className="w-full h-48 object-contain bg-gray-100 p-2 flex-shrink-0"
+      />
+
+      <div className="p-4 flex-1 overflow-y-auto flex flex-col">
         {isEditing ? (
           <>
             <div className="mb-3">
@@ -116,7 +119,8 @@ const AdminToolCard = ({ tool }) => {
             </span>
           </>
         )}
-        <div className="flex justify-end gap-3 mt-4">
+
+        <div className="flex justify-end gap-3 mt-auto pt-4">
           {isEditing ? (
             <>
               <button onClick={handleUpdate} className="bg-haskurit-yellow text-haskurit-gray font-semibold p-4 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"><RiSave3Line /></button>
@@ -131,7 +135,6 @@ const AdminToolCard = ({ tool }) => {
         </div>
       </div>
     </div>
-  );
-};
-
+  )
+}
 export default AdminToolCard;
