@@ -1,8 +1,20 @@
 import { FaPhone } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 const ToolCard = ({ tool }) => {
+    const navigate = useNavigate()
+
+    const handleCardClick = (e) => {
+        // אם לחצו על לינק הטלפון - אל תעשה כלום
+        if (e.target.closest('a')) return
+        navigate(`/tools/${tool._id}`)
+    }
+
     return (
-        <div className="bg-white shadow-md rounded-xl overflow-hidden transition-transform transform hover:scale-105 duration-200 h-88">
+        <div
+            onClick={handleCardClick}
+            className="bg-white shadow-md rounded-xl overflow-hidden transition-transform transform cursor-pointer hover:scale-105 duration-200 h-88"
+        >
             <img
                 src={tool.imageUrl}
                 alt={tool.name}
@@ -21,7 +33,7 @@ const ToolCard = ({ tool }) => {
                     <a
                         href="tel:+972527694198"
                         aria-label="התקשר עכשיו"
-                        className="bg-haskurit-gray text-white p-3 rounded-lg"
+                        className="bg-haskurit-gray text-white p-3 rounded-lg hover:bg-gray-700 transition-colors"
                     >
                         <FaPhone />
                     </a>

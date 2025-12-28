@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
+import ToolPage from './pages/ToolPage';
 import Login from './features/auth/Login';
 import AdminPanel from './pages/AdminPanel';
 import PersistLogin from './features/auth/PersistLogin';
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="tools/:id" element={<ToolPage />} />
           <Route path="login" element={<Login />} />
           {/* עמודים רק לאחר התחברות */}
           <Route element={<PersistLogin />} >
