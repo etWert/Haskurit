@@ -1,17 +1,15 @@
-// config/cloudinary.js
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 
-// הגדרת Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// הגדרת Storage ל-Multer עם Cloudinary
-const storage = new CloudinaryStorage({
+// הגדרת אחסון לתמונות כלים
+const toolsStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'tools',
@@ -23,19 +21,38 @@ const storage = new CloudinaryStorage({
   },
 });
 
-// יצירת multer instance
-const upload = multer({ 
-  storage: storage,
-  limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB
+// הגדרת אחסון לתמונות הודעות
+const popupsStorage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'popups',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+    transformation: [
+      { width: 800, height: 600, crop: 'limit' },
+      { quality: 'auto' }
+    ]
   },
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
-      cb(null, true);
-    } else {
-      cb(new Error('רק קבצי תמונה מותרים!'), false);
-    }
-  }
 });
 
-module.exports = { cloudinary, upload };
+// פונקציה ליצירת multer עם הגדרות אחסון
+const createMulterUpload = (storage) => {
+  return multer({
+    storage: storage,
+    limits: {
+      fileSize: 5 * 1024 * 1024, // 5MB
+    },
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+      } else {
+        cb(new Error('רק קבצי תמונה מותרים!'), false);
+      }
+    }
+  });
+};
+
+// יצירת multer instances
+const toolUpload = createMulterUpload(toolsStorage);
+const popupUpload = createMulterUpload(popupsStorage);
+
+module.exports = { cloudinary, toolUpload, popupUpload };
