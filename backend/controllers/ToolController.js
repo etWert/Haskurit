@@ -35,7 +35,7 @@ const getToolById = async (req, res) => {
 }
 
 const createTool = async (req, res) => {
-    const { name, description, price } = req.body
+    const { name, description,specs, price } = req.body
     // בדיקה שהתמונה הועלתה
     if (!req.file) {
         return res.status(400).json({
@@ -66,7 +66,7 @@ const createTool = async (req, res) => {
             data: null
         })
     }
-    const tool = await Tool.create({ name, description, price, imageUrl: req.file.path /*URL של התמונה מ-Cloudinary*/ })
+    const tool = await Tool.create({ name, description,specs, price, imageUrl: req.file.path /*URL של התמונה מ-Cloudinary*/ })
     if (!tool) {
         // אם יש שגיאה, מחק את התמונה שהועלתה
         if (req.file && req.file.public_id) {
@@ -81,11 +81,11 @@ const createTool = async (req, res) => {
     res.json({
         error: false,
         message: "הכלי נוסף בהצלחה",
-        data: { _id: tool._id, name: tool.name, description: tool.description, price: tool.price, imageUrl: tool.imageUrl }
+        data: { _id: tool._id, name: tool.name, description: tool.description,specs:tool.specs, price: tool.price, imageUrl: tool.imageUrl }
     })
 }
 const updateTool = async (req, res) => {
-    const { _id, name, description, price } = req.body
+    const { _id, name, description, specs,price } = req.body
     if (!_id) {
         // אם הועלתה תמונה חדשה אבל אין ID, מחק אותה
         if (req.file && req.file.public_id) {
@@ -114,6 +114,7 @@ const updateTool = async (req, res) => {
 
     tool.name = name || tool.name
     tool.description = description || tool.description
+    tool.specs=specs||tool.specs
     tool.price = price || tool.price
     // אם הועלתה תמונה חדשה
     if (req.file) {
@@ -134,7 +135,7 @@ const updateTool = async (req, res) => {
     res.json({
         error: false,
         message: "הכלי עודכן בהצלחה",
-        data: { _id: updatedTool._id, name: updatedTool.name, description: updatedTool.description, price: updatedTool.price, imageUrl: updatedTool.imageUrl }
+        data: { _id: updatedTool._id, name: updatedTool.name, description: updatedTool.description,specs:updatedTool.specs, price: updatedTool.price, imageUrl: updatedTool.imageUrl }
     })
 }
 
