@@ -21,7 +21,7 @@ const PopupMessage = () => {
         }, 1000)
 
         return () => clearTimeout(timer)
-    }, [])
+    }, [shouldShowPopup])
 
     const { data: popupData, isSuccess } = useGetRandomPopupMessageQuery(undefined, {
         skip: !shouldFetch
