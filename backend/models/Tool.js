@@ -4,7 +4,8 @@ const toolSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description:String,
+    description: String,
+    specs: String,
     price: {
         type: Number,
         required: true
@@ -16,4 +17,4 @@ const toolSchema = new mongoose.Schema({
 }, {
     timestamps: true
 })
-module.exports=mongoose.model('Tool',toolSchema)
+module.exports = mongoose.model('Tool', toolSchema)
