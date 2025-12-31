@@ -113,6 +113,11 @@ const AddTool = () => {
                         rows="3"
                         className="border border-gray-300 rounded-lg px-3 py-2 md:col-span-2"
                     />
+                    <textarea
+                        name="specs"
+                        placeholder="מפרט טכני (אופציונלי)"
+                        className="border border-gray-300 rounded-lg px-3 py-2 md:col-span-2"
+                    />
                 </div>
 
                 <button

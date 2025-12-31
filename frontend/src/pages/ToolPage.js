@@ -91,24 +91,14 @@ const ToolPage = () => {
                                         <p className="text-haskurit-gray leading-relaxed">{tool.description}</p>
                                     </div>
                                 )}
-                                {/* שדות לא רלוונטיים כרגע */}
-                                {/* {tool.specs && (
+                                {tool.specs && (
                                     <div className="mb-6">
                                         <h2 className="text-lg font-semibold text-gray-700 mb-2">
                                             מפרט טכני:
                                         </h2>
-                                        <p className="text-gray-600">{tool.specs}</p>
+                                        <p className="text-haskurit-gray">{tool.specs}</p>
                                     </div>
-                                )} */}
-
-                                {/* {tool.accessories && (
-                                    <div className="mb-6">
-                                        <h2 className="text-lg font-semibold text-gray-700 mb-2">
-                                            אביזרים נלווים:
-                                        </h2>
-                                        <p className="text-gray-600">{tool.accessories}</p>
-                                    </div>
-                                )} */}
+                                )}
                             </div>
 
                             {/* מחיר וכפתור */}

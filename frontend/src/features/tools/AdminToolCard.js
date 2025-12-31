@@ -11,6 +11,7 @@ const AdminToolCard = ({ tool }) => {
   const [formData, setFormData] = useState({
     name: tool.name,
     description: tool.description || '',
+    specs: tool.specs || '',
     price: tool.price,
     _id: tool._id,
   });
@@ -58,12 +59,13 @@ const AdminToolCard = ({ tool }) => {
     setFormData({
       name: tool.name,
       description: tool.description || '',
+      specs: tool.specs || '',
       price: tool.price,
       _id: tool._id,
     });
   }
   return (
-    <div className="bg-white shadow-md rounded-xl overflow-hidden transition-transform transform hover:scale-105 duration-200 h-[500px] flex flex-col">
+    <div className="bg-white shadow-md rounded-xl overflow-hidden transition-transform transform hover:scale-105 duration-200 h-[600px] flex flex-col">
       <img
         src={imagePreview}
         alt={formData.name}
@@ -98,6 +100,13 @@ const AdminToolCard = ({ tool }) => {
               rows="3"
               className="text-sm text-gray-600 mb-3 border border-gray-300 rounded-lg px-3 py-2 w-full"
             />
+            <textarea
+              name="specs"
+              value={formData.specs}
+              onChange={handleChange}
+              rows="3"
+              className="text-sm text-gray-600 mb-3 border border-gray-300 rounded-lg px-3 py-2 w-full"
+            />
             <div className="text-lg font-semibold text-haskurit-yellow flex items-center gap-1 mb-2">
               <input
                 type="number"
@@ -114,6 +123,7 @@ const AdminToolCard = ({ tool }) => {
           <>
             <h3 className="text-xl font-bold text-haskurit-gray mb-2">{tool.name}</h3>
             <p className="text-sm text-gray-600 mb-3">{tool.description}</p>
+            <p className="text-sm text-gray-600 mb-3">{tool.specs}</p>
             <span className="text-lg font-semibold text-haskurit-yellow flex items-center gap-1">
               <span>₪{tool.price} ליום</span>
             </span>
